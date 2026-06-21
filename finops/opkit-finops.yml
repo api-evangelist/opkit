@@ -1,0 +1,89 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Opkit
+providerId: opkit
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Benefits
+- Verification
+- Telehealth
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Opkit spend. Opkit billed via a sales-led monthly subscription
+  scaled by usage - number of patients and number of eligibility checks - rather
+  than transparent self-serve per-call pricing. Exact rates were not published,
+  so cost figures are not reconciled. The platform appears decommissioned after
+  the company's late-2024 acqui-hire by 11x; this artifact describes the billing
+  model as publicly characterized.
+notes: >-
+  Subscription tiers and per-check rates were quote-based and not published.
+  Verify against authoritative documentation during reconciliation; the live
+  docs at docs.opkit.co are no longer reachable.
+sources:
+- https://www.opkit.co
+- https://docs.opkit.co
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Opkit
+serviceCategory: Healthcare and Insurance Verification
+billingModel:
+  pricingCategory: Subscription-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: Opkit
+  ServiceCategory: Healthcare and Insurance Verification
+  ProviderName: Opkit
+  PublisherName: Opkit
+  InvoiceIssuerName: Opkit
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Based
+meters:
+- name: eligibility_checks
+  description: Eligibility inquiries submitted, a primary usage dimension of the subscription tier.
+  unit: requests
+  aggregation: sum
+  dimensions:
+  - account
+  - payer
+- name: patients
+  description: Active patient records, a usage dimension of the subscription tier.
+  unit: patients
+  aggregation: sum
+  dimensions:
+  - account
+- name: subscription
+  description: Monthly platform subscription fee for the contracted tier.
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track eligibility-check volume and active patient counts against the contracted tier allowance.
+- name: Allocation
+  description: Tag API keys per practice/workload to map verification spend to internal cost centers.
+- name: Optimization
+  description: Avoid redundant re-verifications; rely on webhook-driven results instead of polling to reduce wasted calls.
+- name: Accountability
+  description: Review monthly subscription tier fit against actual patient and eligibility-check volume.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

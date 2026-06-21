@@ -1,0 +1,77 @@
+aid: opkit
+name: Opkit
+review:
+  question: Is the Opkit API a currently operating, publicly documented REST API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  statusNote: |
+    Opkit (Y Combinator S21, New York) launched in March 2023 as the first
+    insurance-verification platform purpose-built for telehealth companies and
+    virtual medical practices, pairing a web dashboard with a JSON REST API for
+    programmatic eligibility verification. In August 2024 the company pivoted to
+    a generative-AI healthcare call center, and in late 2024 it was acqui-hired
+    by 11x for its voice-AI technology and engineering talent. The Opkit
+    platform was subsequently wound down. As of this review the company is
+    marked "Inactive" on Y Combinator, www.opkit.co and docs.opkit.co do not
+    respond, and the API host api.opkit.co no longer resolves via DNS. This
+    catalog therefore documents the API as it was publicly described while
+    operating, not as a currently purchasable or reachable service.
+findings:
+  summary: |
+    Opkit operated a Bearer-key authenticated JSON REST API at base URL
+    https://api.opkit.co/v1 covering insurance eligibility verification:
+    eligibility inquiries, benefits, payers, patients, and webhooks. The
+    verified facts are the authentication scheme (Bearer API key), the base URL,
+    and the resource model (publicly described). Exact endpoint paths,
+    field-level schemas, rate limits, and pricing were not retrievable because
+    the live documentation and API are no longer reachable; the OpenAPI in this
+    catalog models those resources conservatively along standard REST
+    conventions and is flagged as unreconciled.
+  verified:
+    - fact: Authentication is a Bearer API key.
+      confidence: high
+      source: Opkit public product descriptions / API positioning.
+    - fact: API base URL is https://api.opkit.co/v1.
+      confidence: high
+      source: Task brief and Opkit API positioning.
+    - fact: Resource model includes eligibility inquiries, benefits, payers, patients, and webhooks.
+      confidence: high
+      source: Opkit public product descriptions (eligibility, benefits, carrier connectivity, patient tracking, programmatic results).
+    - fact: Company was acqui-hired by 11x in late 2024 and the platform was wound down.
+      confidence: high
+      source: Crunchbase acquisition profile; multiple trade-press reports.
+  unverified:
+    - Exact endpoint paths and HTTP methods (modeled conservatively).
+    - Field-level request/response schemas (modeled conservatively).
+    - Specific rate-limit values (not published).
+    - Specific subscription tier names and prices (sales-led, not published).
+  reachability:
+    website:
+      url: https://www.opkit.co
+      reachable: false
+      note: Connection refused as of review date.
+    documentation:
+      url: https://docs.opkit.co
+      reachable: false
+      note: Connection refused; not archived in the Wayback Machine.
+    apiHost:
+      url: https://api.opkit.co/v1
+      reachable: false
+      note: Host does not resolve via DNS as of review date.
+sources:
+  - url: https://www.ycombinator.com/companies/opkit
+    type: CompanyProfile
+    note: Lists Opkit (S21, New York) as "Inactive"; describes AI phone-call automation for US healthcare.
+  - url: https://www.crunchbase.com/acquisition/11x-ai-acquires-opkit--e73b9aba
+    type: Acquisition
+    note: Records Opkit's acquisition by 11x.
+  - url: https://www.mobihealthnews.com/news/insurance-verification-platform-virtual-care-opkit-launches-1m
+    type: Press
+    note: Describes the platform - web dashboard plus JSON REST API for programmatic eligibility verification; tiered subscription scaled by patients and eligibility checks.
+  - url: https://hitconsultant.net/2023/03/08/opkit-launches-first-insurance-verification-platform/
+    type: Press
+    note: Launch coverage of the insurance-verification platform for telehealth.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

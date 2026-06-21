@@ -1,0 +1,53 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Opkit
+providerId: opkit
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Benefits
+- Verification
+- Telehealth
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  Opkit did not publish specific public rate-limit values for its REST API.
+  As a Bearer-key authenticated JSON API, per-account throttling and usage
+  quotas (tied to the subscription tier, scaled by patients and eligibility
+  checks) would have applied, but exact RPM/RPD/quota numbers were not
+  documented and are not reconciled here. The platform appears decommissioned
+  following the late-2024 acqui-hire by 11x.
+notes: >-
+  No published rate-limit figures are available; the live documentation at
+  docs.opkit.co is no longer reachable. Values below are placeholders to be
+  reconciled against authoritative documentation if it becomes available.
+sources:
+- https://docs.opkit.co
+- https://www.opkit.co
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (RPM)
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Per-account request throttling was not publicly documented.
+- name: Eligibility Check Quota
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: Eligibility-check volume was governed by the subscription tier, not a published API limit.
+policies:
+- name: Tiered Quotas
+  description: Usage allowances scaled with the subscription tier (number of patients and eligibility checks).
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on HTTP 429.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

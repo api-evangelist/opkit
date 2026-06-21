@@ -1,0 +1,127 @@
+aid: opkit
+url: https://raw.githubusercontent.com/api-evangelist/opkit/refs/heads/main/apis.yml
+name: Opkit
+kind: company
+description: Opkit was a healthcare automation company that built an automated
+  health insurance verification platform purpose-built for telehealth companies
+  and virtual medical practices. The Opkit REST API let engineering teams run
+  insurance eligibility checks, read benefits, look up payers, manage patients,
+  and receive webhook events programmatically. Opkit (YC S21) later pivoted to a
+  generative-AI healthcare call center and was acqui-hired by 11x in late 2024,
+  after which the platform was wound down. This catalog documents the API as it
+  was publicly described while it was operating.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Benefits
+- Verification
+- Telehealth
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: opkit:eligibility-inquiries
+  name: Opkit Eligibility Inquiries API
+  tags:
+  - Eligibility
+  - Insurance
+  - Verification
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.opkit.co
+  baseURL: https://api.opkit.co/v1
+  properties:
+  - url: https://docs.opkit.co
+    type: Documentation
+  - url: openapi/opkit-openapi.yml
+    type: OpenAPI
+  description: Create and retrieve real-time insurance eligibility inquiries to
+    determine whether a patient's coverage is active, in- or out-of-network, and
+    what cost-sharing applies. Submitted against a payer for a patient and
+    resolved asynchronously, with results delivered on the inquiry object and via
+    webhooks.
+- aid: opkit:benefits
+  name: Opkit Benefits API
+  tags:
+  - Benefits
+  - Coverage
+  - Insurance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.opkit.co
+  baseURL: https://api.opkit.co/v1
+  properties:
+  - url: https://docs.opkit.co
+    type: Documentation
+  - url: openapi/opkit-openapi.yml
+    type: OpenAPI
+  description: Read structured benefit details returned by a completed eligibility
+    inquiry - plan status, network status, copays, coinsurance, deductibles, and
+    out-of-pocket maximums.
+- aid: opkit:payers
+  name: Opkit Payers API
+  tags:
+  - Payers
+  - Insurance
+  - Directory
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.opkit.co
+  baseURL: https://api.opkit.co/v1
+  properties:
+  - url: https://docs.opkit.co
+    type: Documentation
+  - url: openapi/opkit-openapi.yml
+    type: OpenAPI
+  description: List and retrieve the insurance carriers (payers) Opkit connects to
+    across the United States, used to identify the correct payer when creating an
+    eligibility inquiry.
+- aid: opkit:patients
+  name: Opkit Patients API
+  tags:
+  - Patients
+  - Records
+  - Healthcare
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.opkit.co
+  baseURL: https://api.opkit.co/v1
+  properties:
+  - url: https://docs.opkit.co
+    type: Documentation
+  - url: openapi/opkit-openapi.yml
+    type: OpenAPI
+  description: Create, retrieve, update, and list patient records used as the
+    subject of eligibility inquiries, including demographics and member
+    identifiers needed for verification.
+- aid: opkit:webhooks
+  name: Opkit Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.opkit.co
+  baseURL: https://api.opkit.co/v1
+  properties:
+  - url: https://docs.opkit.co
+    type: Documentation
+  - url: openapi/opkit-openapi.yml
+    type: OpenAPI
+  description: Register and manage webhook endpoints to receive event
+    notifications - such as an eligibility inquiry completing - so applications
+    can react to asynchronous results without polling.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/opkit
+- type: Website
+  url: https://www.opkit.co
+- type: Documentation
+  url: https://docs.opkit.co
+- type: Plans
+  url: plans/opkit-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/opkit-rate-limits.yml
+- type: FinOps
+  url: finops/opkit-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

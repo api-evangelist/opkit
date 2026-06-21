@@ -1,0 +1,292 @@
+{
+  "info": {
+    "name": "Opkit API",
+    "description": "Postman collection for the Opkit insurance-verification REST API (eligibility inquiries, benefits, payers, patients, webhooks). Base URL https://api.opkit.co/v1 with Bearer API key auth. Note: the Opkit platform appears decommissioned following the company's late-2024 acqui-hire by 11x; endpoints are modeled from Opkit's publicly described resource model.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.opkit.co/v1"
+    },
+    {
+      "key": "id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Eligibility Inquiries",
+      "item": [
+        {
+          "name": "List eligibility inquiries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/eligibility-inquiries",
+              "host": ["{{baseUrl}}"],
+              "path": ["eligibility-inquiries"]
+            },
+            "description": "Returns a paginated list of eligibility inquiries on the account."
+          },
+          "response": []
+        },
+        {
+          "name": "Create an eligibility inquiry",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_id\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"member_id\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/eligibility-inquiries",
+              "host": ["{{baseUrl}}"],
+              "path": ["eligibility-inquiries"]
+            },
+            "description": "Submits a real-time insurance eligibility inquiry for a patient against a payer."
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve an eligibility inquiry",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/eligibility-inquiries/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["eligibility-inquiries", "{{id}}"]
+            },
+            "description": "Retrieves a single eligibility inquiry, including its status and benefits when complete."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Benefits",
+      "item": [
+        {
+          "name": "List benefits",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/benefits",
+              "host": ["{{baseUrl}}"],
+              "path": ["benefits"]
+            },
+            "description": "Returns benefit records derived from completed eligibility inquiries."
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a benefit",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/benefits/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["benefits", "{{id}}"]
+            },
+            "description": "Retrieves a single structured benefit record."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payers",
+      "item": [
+        {
+          "name": "List payers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payers",
+              "host": ["{{baseUrl}}"],
+              "path": ["payers"]
+            },
+            "description": "Returns the list of insurance carriers (payers) Opkit connects to."
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a payer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payers/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["payers", "{{id}}"]
+            },
+            "description": "Retrieves a single payer by its identifier."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Patients",
+      "item": [
+        {
+          "name": "List patients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["patients"]
+            },
+            "description": "Returns a paginated list of patient records on the account."
+          },
+          "response": []
+        },
+        {
+          "name": "Create a patient",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/patients",
+              "host": ["{{baseUrl}}"],
+              "path": ["patients"]
+            },
+            "description": "Creates a patient record to use as the subject of eligibility inquiries."
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a patient",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/patients/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["patients", "{{id}}"]
+            },
+            "description": "Retrieves a single patient record."
+          },
+          "response": []
+        },
+        {
+          "name": "Update a patient",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/patients/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["patients", "{{id}}"]
+            },
+            "description": "Updates an existing patient record."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhook endpoints",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks"]
+            },
+            "description": "Returns the webhook endpoints registered on the account."
+          },
+          "response": []
+        },
+        {
+          "name": "Create a webhook endpoint",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"events\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/webhooks",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks"]
+            },
+            "description": "Registers a URL to receive event notifications such as eligibility inquiry completion."
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a webhook endpoint",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "{{id}}"]
+            },
+            "description": "Retrieves a single webhook endpoint."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a webhook endpoint",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/webhooks/{{id}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["webhooks", "{{id}}"]
+            },
+            "description": "Deletes a webhook endpoint."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

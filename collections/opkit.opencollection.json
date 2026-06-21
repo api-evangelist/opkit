@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opkit API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Eligibility Inquiries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List eligibility inquiries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/eligibility-inquiries"
+          },
+          "docs": "Returns a paginated list of eligibility inquiries on the account."
+        },
+        {
+          "info": {
+            "name": "Create an eligibility inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opkit.co/v1/eligibility-inquiries",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"patient_id\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"member_id\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Submits a real-time insurance eligibility inquiry for a patient against a payer."
+        },
+        {
+          "info": {
+            "name": "Retrieve an eligibility inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/eligibility-inquiries/{{id}}"
+          },
+          "docs": "Retrieves a single eligibility inquiry, including its status and benefits when complete."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List benefits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/benefits"
+          },
+          "docs": "Returns benefit records derived from completed eligibility inquiries."
+        },
+        {
+          "info": {
+            "name": "Retrieve a benefit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/benefits/{{id}}"
+          },
+          "docs": "Retrieves a single structured benefit record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/payers"
+          },
+          "docs": "Returns the list of insurance carriers (payers) Opkit connects to."
+        },
+        {
+          "info": {
+            "name": "Retrieve a payer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/payers/{{id}}"
+          },
+          "docs": "Retrieves a single payer by its identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Patients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/patients"
+          },
+          "docs": "Returns a paginated list of patient records on the account."
+        },
+        {
+          "info": {
+            "name": "Create a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opkit.co/v1/patients",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"date_of_birth\": \"<date>\"\n}"
+            }
+          },
+          "docs": "Creates a patient record to use as the subject of eligibility inquiries."
+        },
+        {
+          "info": {
+            "name": "Retrieve a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/patients/{{id}}"
+          },
+          "docs": "Retrieves a single patient record."
+        },
+        {
+          "info": {
+            "name": "Update a patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.opkit.co/v1/patients/{{id}}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"first_name\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Updates an existing patient record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhook endpoints",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/webhooks"
+          },
+          "docs": "Returns the webhook endpoints registered on the account."
+        },
+        {
+          "info": {
+            "name": "Create a webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opkit.co/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"url\": \"<uri>\",\n  \"events\": []\n}"
+            }
+          },
+          "docs": "Registers a URL to receive event notifications such as eligibility inquiry completion."
+        },
+        {
+          "info": {
+            "name": "Retrieve a webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/webhooks/{{id}}"
+          },
+          "docs": "Retrieves a single webhook endpoint."
+        },
+        {
+          "info": {
+            "name": "Delete a webhook endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.opkit.co/v1/webhooks/{{id}}"
+          },
+          "docs": "Deletes a webhook endpoint."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Opkit
+providerId: opkit
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Healthcare
+- Insurance
+- Eligibility
+- Benefits
+- Verification
+- Telehealth
+- Plans
+description: >-
+  Opkit used a sales-led subscription model rather than self-serve public
+  pricing. Customers paid a monthly fee for platform access across multiple
+  tiers scaled by usage - measured by number of patients and number of
+  eligibility checks performed. Specific tier names and prices were not
+  published and are not reconciled in this artifact. Note that the Opkit
+  platform appears decommissioned following the company's late-2024 acqui-hire
+  by 11x; figures here describe the model as it was publicly described, not a
+  currently purchasable offering.
+notes: >-
+  Pricing was not self-serve and exact tier figures were not public. Treat all
+  values as unverified pending authoritative documentation, which is no longer
+  reachable at docs.opkit.co.
+sources:
+- https://www.opkit.co
+- https://docs.opkit.co
+- https://www.mobihealthnews.com/news/insurance-verification-platform-virtual-care-opkit-launches-1m
+plans:
+- id: opkit-subscription
+  name: Subscription (sales-led)
+  type: subscription
+  description: >-
+    Monthly platform subscription with multiple tiers scaled by number of
+    patients and number of eligibility checks. Contact-sales / quote-based;
+    specific prices were not published.
+  entries:
+  - label: Monthly Platform Subscription
+    name: monthly_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: month
+    geo: us
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  - label: Eligibility Checks
+    name: eligibility_checks
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: us
+    unit: 1
+    price: tier-based (scaled by number of eligibility checks)
+    userMultiplied: false
+  - label: Patients
+    name: patients
+    type: usage
+    metric: patients
+    limit: -1
+    timeFrame: month
+    geo: us
+    unit: 1
+    price: tier-based (scaled by number of patients)
+    userMultiplied: false
+  elements:
+  - name: Eligibility Inquiries
+  - name: Benefits
+  - name: Payers
+  - name: Patients
+  - name: Webhooks
+  - name: Web Dashboard
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
