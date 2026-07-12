@@ -110,6 +110,10 @@ apis:
     notifications - such as an eligibility inquiry completing - so applications
     can react to asynchronous results without polling.
 common:
+- type: DomainSecurity
+  url: security/opkit-domain-security.yml
+- type: Authentication
+  url: authentication/opkit-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/opkit
 - type: Website

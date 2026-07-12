@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.opkit.co
+  https: false
+- host: docs.opkit.co
+  https: false
+- host: api.opkit.co
+  https: false
+domains:
+- domain: opkit.co
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
