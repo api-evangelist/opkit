@@ -110,6 +110,8 @@ apis:
     notifications - such as an eligibility inquiry completing - so applications
     can react to asynchronous results without polling.
 common:
+- type: AgenticAccess
+  url: agentic-access/opkit-agentic-access.yml
 - type: DomainSecurity
   url: security/opkit-domain-security.yml
 - type: Authentication
