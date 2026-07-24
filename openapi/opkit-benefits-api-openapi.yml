@@ -1,0 +1,175 @@
+openapi: 3.0.1
+info:
+  title: Opkit Benefits API
+  description: 'REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices. The API exposes eligibility inquiries, benefits, payers, patients, and webhooks. Requests are authenticated with a Bearer API key and all payloads are JSON over HTTPS.
+
+
+    Provenance note: Opkit''s platform appears to have been decommissioned after the company was acqui-hired by 11x in late 2024, and the live documentation at docs.opkit.co and the API host api.opkit.co are no longer reachable. This specification is reconstructed from Opkit''s publicly described resource model (eligibility inquiries, benefits, payers, patients, webhooks; Bearer-key auth; base URL https://api.opkit.co/v1). Endpoint paths and object fields that could not be verified against live documentation are modeled conservatively along standard RESTful conventions and should be reconciled against authoritative Opkit documentation if it becomes available. No values are presented as guaranteed-accurate beyond the verified auth scheme and base URL.'
+  contact:
+    name: Opkit
+    url: https://www.opkit.co
+  version: '1.0'
+servers:
+- url: https://api.opkit.co/v1
+  description: Opkit API v1 production base URL (host no longer resolving as of catalog date).
+security:
+- bearerAuth: []
+tags:
+- name: Benefits
+  description: Read structured benefit details from completed eligibility inquiries.
+paths:
+  /benefits:
+    get:
+      operationId: listBenefits
+      tags:
+      - Benefits
+      summary: List benefits
+      description: Returns benefit records derived from completed eligibility inquiries, optionally filtered by eligibility inquiry.
+      parameters:
+      - name: eligibility_inquiry_id
+        in: query
+        description: Filter benefits to a specific eligibility inquiry.
+        required: false
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/StartingAfter'
+      responses:
+        '200':
+          description: A list of benefit records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BenefitList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /benefits/{id}:
+    get:
+      operationId: getBenefit
+      tags:
+      - Benefits
+      summary: Retrieve a benefit
+      description: Retrieves a single structured benefit record.
+      parameters:
+      - $ref: '#/components/parameters/PathId'
+      responses:
+        '200':
+          description: The requested benefit record.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Benefit'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
+  schemas:
+    BenefitList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Benefit'
+        has_more:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A machine-readable error type.
+            message:
+              type: string
+              description: A human-readable description of the error.
+    Benefit:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: benefit
+        eligibility_inquiry_id:
+          type: string
+        coverage_status:
+          type: string
+          description: Whether the plan is active.
+          enum:
+          - active
+          - inactive
+          - unknown
+        network_status:
+          type: string
+          description: Whether the patient is in- or out-of-network.
+          enum:
+          - in_network
+          - out_of_network
+          - unknown
+        plan_name:
+          type: string
+        copay:
+          type: number
+          nullable: true
+        coinsurance:
+          type: number
+          nullable: true
+        deductible:
+          type: number
+          nullable: true
+        deductible_remaining:
+          type: number
+          nullable: true
+        out_of_pocket_max:
+          type: number
+          nullable: true
+  responses:
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Provide your Opkit API key as a Bearer token in the Authorization header: `Authorization: Bearer YOUR_API_KEY`.'
