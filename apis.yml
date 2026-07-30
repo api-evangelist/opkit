@@ -10,7 +10,20 @@ description: Opkit was a healthcare automation company that built an automated
   generative-AI healthcare call center and was acqui-hired by 11x in late 2024,
   after which the platform was wound down. This catalog documents the API as it
   was publicly described while it was operating.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/opkit.png
 tags:
 - Healthcare
 - Insurance
@@ -22,93 +35,66 @@ created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.19'
 apis:
-- aid: opkit:eligibility-inquiries
-  name: Opkit Eligibility Inquiries API
-  tags:
-  - Eligibility
-  - Insurance
-  - Verification
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: opkit:opkit-benefits-api
+  name: Opkit Benefits API
+  description: Read structured benefit details from completed eligibility inquiries.
   humanURL: https://docs.opkit.co
   baseURL: https://api.opkit.co/v1
-  properties:
-  - url: https://docs.opkit.co
-    type: Documentation
-  - url: openapi/opkit-openapi.yml
-    type: OpenAPI
-  description: Create and retrieve real-time insurance eligibility inquiries to
-    determine whether a patient's coverage is active, in- or out-of-network, and
-    what cost-sharing applies. Submitted against a payer for a patient and
-    resolved asynchronously, with results delivered on the inquiry object and via
-    webhooks.
-- aid: opkit:benefits
-  name: Opkit Benefits API
   tags:
   - Benefits
-  - Coverage
-  - Insurance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/opkit-benefits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.opkit.co
+- aid: opkit:opkit-eligibility-inquiries-api
+  name: Opkit Eligibility Inquiries API
+  description: Create and retrieve real-time insurance eligibility inquiries.
   humanURL: https://docs.opkit.co
   baseURL: https://api.opkit.co/v1
-  properties:
-  - url: https://docs.opkit.co
-    type: Documentation
-  - url: openapi/opkit-openapi.yml
-    type: OpenAPI
-  description: Read structured benefit details returned by a completed eligibility
-    inquiry - plan status, network status, copays, coinsurance, deductibles, and
-    out-of-pocket maximums.
-- aid: opkit:payers
-  name: Opkit Payers API
   tags:
-  - Payers
-  - Insurance
-  - Directory
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  - Eligibility Inquiries
+  properties:
+  - type: OpenAPI
+    url: openapi/opkit-eligibility-inquiries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.opkit.co
+- aid: opkit:opkit-patients-api
+  name: Opkit Patients API
+  description: Manage patient records that are the subject of eligibility inquiries.
   humanURL: https://docs.opkit.co
   baseURL: https://api.opkit.co/v1
-  properties:
-  - url: https://docs.opkit.co
-    type: Documentation
-  - url: openapi/opkit-openapi.yml
-    type: OpenAPI
-  description: List and retrieve the insurance carriers (payers) Opkit connects to
-    across the United States, used to identify the correct payer when creating an
-    eligibility inquiry.
-- aid: opkit:patients
-  name: Opkit Patients API
   tags:
   - Patients
-  - Records
-  - Healthcare
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  properties:
+  - type: OpenAPI
+    url: openapi/opkit-patients-api-openapi.yml
+  - type: Documentation
+    url: https://docs.opkit.co
+- aid: opkit:opkit-payers-api
+  name: Opkit Payers API
+  description: Look up insurance carriers (payers) Opkit connects to.
   humanURL: https://docs.opkit.co
   baseURL: https://api.opkit.co/v1
+  tags:
+  - Payers
   properties:
-  - url: https://docs.opkit.co
-    type: Documentation
-  - url: openapi/opkit-openapi.yml
-    type: OpenAPI
-  description: Create, retrieve, update, and list patient records used as the
-    subject of eligibility inquiries, including demographics and member
-    identifiers needed for verification.
-- aid: opkit:webhooks
+  - type: OpenAPI
+    url: openapi/opkit-payers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.opkit.co
+- aid: opkit:opkit-webhooks-api
   name: Opkit Webhooks API
+  description: Register and manage webhook endpoints for event notifications.
+  humanURL: https://docs.opkit.co
+  baseURL: https://api.opkit.co/v1
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.opkit.co
-  baseURL: https://api.opkit.co/v1
   properties:
-  - url: https://docs.opkit.co
-    type: Documentation
-  - url: openapi/opkit-openapi.yml
-    type: OpenAPI
-  description: Register and manage webhook endpoints to receive event
-    notifications - such as an eligibility inquiry completing - so applications
-    can react to asynchronous results without polling.
+  - type: OpenAPI
+    url: openapi/opkit-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.opkit.co
 common:
 - type: AgenticAccess
   url: agentic-access/opkit-agentic-access.yml
