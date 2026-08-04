@@ -1,0 +1,22 @@
+{
+  "provider": "opkit",
+  "sources": [
+    "opkit-benefits-api-openapi.yml",
+    "opkit-eligibility-inquiries-api-openapi.yml",
+    "opkit-patients-api-openapi.yml",
+    "opkit-payers-api-openapi.yml",
+    "opkit-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "opkit-benefits-api-openapi.yml",
+    "opkit-eligibility-inquiries-api-openapi.yml",
+    "opkit-patients-api-openapi.yml",
+    "opkit-payers-api-openapi.yml",
+    "opkit-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
