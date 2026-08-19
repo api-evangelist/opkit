@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opkit Benefits API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Benefits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List benefits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/benefits",
+            "params": [
+              {
+                "name": "eligibility_inquiry_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter benefits to a specific eligibility inquiry."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination; the id of the last object on the previous page."
+              }
+            ]
+          },
+          "docs": "Returns benefit records derived from completed eligibility inquiries, optionally filtered by eligibility inquiry."
+        },
+        {
+          "info": {
+            "name": "Retrieve a benefit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/benefits/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves a single structured benefit record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

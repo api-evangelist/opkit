@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opkit Benefits Payers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/payers",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Free-text search to match payers by name."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination; the id of the last object on the previous page."
+              }
+            ]
+          },
+          "docs": "Returns the list of insurance carriers (payers) Opkit connects to, with optional search."
+        },
+        {
+          "info": {
+            "name": "Retrieve a payer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/payers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves a single payer by its identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

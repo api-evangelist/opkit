@@ -1,0 +1,594 @@
+{
+  "item": [
+    {
+      "id": "069ffe33-456b-4cc6-b29f-33a4ee53650c",
+      "name": "Eligibility Inquiries",
+      "description": {
+        "content": "Create and retrieve real-time insurance eligibility inquiries.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0cadfa9f-ed6c-4b0f-a907-9f44b5d984ba",
+          "name": "List eligibility inquiries",
+          "request": {
+            "name": "List eligibility inquiries",
+            "description": {
+              "content": "Returns a paginated list of eligibility inquiries on the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility-inquiries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of records to return per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<string>",
+                  "description": "Cursor for pagination; the id of the last object on the previous page."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2f453625-9771-4739-ae73-6bc2e287e145",
+              "name": "A list of eligibility inquiries.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"object\": \"list\",\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"object\": \"eligibility_inquiry\",\n      \"status\": \"completed\",\n      \"patient_id\": \"string\",\n      \"payer_id\": \"string\",\n      \"member_id\": \"string\",\n      \"benefits\": [\n        {\n          \"id\": \"string\",\n          \"object\": \"benefit\",\n          \"eligibility_inquiry_id\": \"string\",\n          \"coverage_status\": \"unknown\",\n          \"network_status\": \"in_network\",\n          \"plan_name\": \"string\",\n          \"copay\": 3089.3481655415367,\n          \"coinsurance\": 6152.189460235514,\n          \"deductible\": 7886.308179614621,\n          \"deductible_remaining\": 2547.129757163279,\n          \"out_of_pocket_max\": 3192.4273043751405\n        },\n        {\n          \"id\": \"string\",\n          \"object\": \"benefit\",\n          \"eligibility_inquiry_id\": \"string\",\n          \"coverage_status\": \"inactive\",\n          \"network_status\": \"unknown\",\n          \"plan_name\": \"string\",\n          \"copay\": 5754.810005841391,\n          \"coinsurance\": 3967.429150185252,\n          \"deductible\": 114.72315821932644,\n          \"deductible_remaining\": 3493.081920056651,\n          \"out_of_pocket_max\": 3484.8964763323997\n        }\n      ],\n      \"created_at\": \"1985-03-06T12:21:43.843Z\",\n      \"completed_at\": \"1988-08-15T08:14:17.996Z\",\n      \"metadata\": {\n        \"key_0\": 5020.830273858395\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"object\": \"eligibility_inquiry\",\n      \"status\": \"pending\",\n      \"patient_id\": \"string\",\n      \"payer_id\": \"string\",\n      \"member_id\": \"string\",\n      \"benefits\": [\n        {\n          \"id\": \"string\",\n          \"object\": \"benefit\",\n          \"eligibility_inquiry_id\": \"string\",\n          \"coverage_status\": \"unknown\",\n          \"network_status\": \"unknown\",\n          \"plan_name\": \"string\",\n          \"copay\": 2178.6992180719913,\n          \"coinsurance\": 9825.566985503425,\n          \"deductible\": 855.8972486109517,\n          \"deductible_remaining\": 1977.08735931018,\n          \"out_of_pocket_max\": 1537.8152616277373\n        },\n        {\n          \"id\": \"string\",\n          \"object\": \"benefit\",\n          \"eligibility_inquiry_id\": \"string\",\n          \"coverage_status\": \"unknown\",\n          \"network_status\": \"in_network\",\n          \"plan_name\": \"string\",\n          \"copay\": 6333.924788581482,\n          \"coinsurance\": 7089.238830938164,\n          \"deductible\": 9426.34374887095,\n          \"deductible_remaining\": 9048.41564325133,\n          \"out_of_pocket_max\": 9573.146731458744\n        }\n      ],\n      \"created_at\": \"2012-03-21T23:26:19.306Z\",\n      \"completed_at\": \"1956-11-25T06:01:38.346Z\",\n      \"metadata\": {\n        \"key_0\": false\n      }\n    }\n  ],\n  \"has_more\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e218226d-7862-404c-ab95-6a62ae5355b4",
+              "name": "Authentication failed or the API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "20"
+                    },
+                    {
+                      "key": "starting_after",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1e4967c-90c6-4f9a-b279-ac2d9e99438f",
+          "name": "Create an eligibility inquiry",
+          "request": {
+            "name": "Create an eligibility inquiry",
+            "description": {
+              "content": "Submits a real-time insurance eligibility inquiry for a patient against a payer. Inquiries are resolved asynchronously; poll the inquiry or subscribe to a webhook to receive the completed result and benefits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility-inquiries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_id\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"service_type\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": 9959,\n    \"key_1\": true\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6951d677-224a-4bf0-9f95-13fc4be8d78e",
+              "name": "The created eligibility inquiry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_id\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"service_type\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"eligibility_inquiry\",\n  \"status\": \"completed\",\n  \"patient_id\": \"string\",\n  \"payer_id\": \"string\",\n  \"member_id\": \"string\",\n  \"benefits\": [\n    {\n      \"id\": \"string\",\n      \"object\": \"benefit\",\n      \"eligibility_inquiry_id\": \"string\",\n      \"coverage_status\": \"active\",\n      \"network_status\": \"out_of_network\",\n      \"plan_name\": \"string\",\n      \"copay\": 8709.008285983933,\n      \"coinsurance\": 7613.778132679721,\n      \"deductible\": 6013.069848697474,\n      \"deductible_remaining\": 7100.292102492947,\n      \"out_of_pocket_max\": 9817.896305074562\n    },\n    {\n      \"id\": \"string\",\n      \"object\": \"benefit\",\n      \"eligibility_inquiry_id\": \"string\",\n      \"coverage_status\": \"unknown\",\n      \"network_status\": \"in_network\",\n      \"plan_name\": \"string\",\n      \"copay\": 3202.0567297085713,\n      \"coinsurance\": 2991.339011122043,\n      \"deductible\": 4780.179939531553,\n      \"deductible_remaining\": 813.3536184339985,\n      \"out_of_pocket_max\": 7180.9012066415535\n    }\n  ],\n  \"created_at\": \"2024-09-11T07:31:19.562Z\",\n  \"completed_at\": \"1964-09-29T11:00:54.644Z\",\n  \"metadata\": {\n    \"key_0\": 8682\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fef87f1-958a-43c5-b29f-dea55f10e486",
+              "name": "The request was malformed or failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_id\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"service_type\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "757da954-d51e-4147-9a43-ccca82051823",
+              "name": "Authentication failed or the API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_id\": \"<string>\",\n  \"payer_id\": \"<string>\",\n  \"member_id\": \"<string>\",\n  \"service_type\": \"<string>\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4017495-518d-4b6b-8d72-23b35591a7ad",
+          "name": "Retrieve an eligibility inquiry",
+          "request": {
+            "name": "Retrieve an eligibility inquiry",
+            "description": {
+              "content": "Retrieves a single eligibility inquiry, including its status and benefits when complete.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eligibility-inquiries",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The unique identifier of the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "132ba726-2ca9-4366-a513-453200b78776",
+              "name": "The requested eligibility inquiry.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"object\": \"eligibility_inquiry\",\n  \"status\": \"completed\",\n  \"patient_id\": \"string\",\n  \"payer_id\": \"string\",\n  \"member_id\": \"string\",\n  \"benefits\": [\n    {\n      \"id\": \"string\",\n      \"object\": \"benefit\",\n      \"eligibility_inquiry_id\": \"string\",\n      \"coverage_status\": \"active\",\n      \"network_status\": \"out_of_network\",\n      \"plan_name\": \"string\",\n      \"copay\": 8709.008285983933,\n      \"coinsurance\": 7613.778132679721,\n      \"deductible\": 6013.069848697474,\n      \"deductible_remaining\": 7100.292102492947,\n      \"out_of_pocket_max\": 9817.896305074562\n    },\n    {\n      \"id\": \"string\",\n      \"object\": \"benefit\",\n      \"eligibility_inquiry_id\": \"string\",\n      \"coverage_status\": \"unknown\",\n      \"network_status\": \"in_network\",\n      \"plan_name\": \"string\",\n      \"copay\": 3202.0567297085713,\n      \"coinsurance\": 2991.339011122043,\n      \"deductible\": 4780.179939531553,\n      \"deductible_remaining\": 813.3536184339985,\n      \"out_of_pocket_max\": 7180.9012066415535\n    }\n  ],\n  \"created_at\": \"2024-09-11T07:31:19.562Z\",\n  \"completed_at\": \"1964-09-29T11:00:54.644Z\",\n  \"metadata\": {\n    \"key_0\": 8682\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "752cb694-92a0-4ea4-af64-86a8f6641aa9",
+              "name": "Authentication failed or the API key is missing or invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2a050f9-bb41-42a2-8ac6-ded9b58cf22d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eligibility-inquiries",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The unique identifier of the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"type\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.opkit.co/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "db47a008-aaf1-441f-adad-cc35922fbcd5",
+    "name": "Opkit Benefits Eligibility Inquiries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices. The API exposes eligibility inquiries, benefits, payers, patients, and webhooks. Requests are authenticated with a Bearer API key and all payloads are JSON over HTTPS.\n\nProvenance note: Opkit's platform appears to have been decommissioned after the company was acqui-hired by 11x in late 2024, and the live documentation at docs.opkit.co and the API host api.opkit.co are no longer reachable. This specification is reconstructed from Opkit's publicly described resource model (eligibility inquiries, benefits, payers, patients, webhooks; Bearer-key auth; base URL https://api.opkit.co/v1). Endpoint paths and object fields that could not be verified against live documentation are modeled conservatively along standard RESTful conventions and should be reconciled against authoritative Opkit documentation if it becomes available. No values are presented as guaranteed-accurate beyond the verified auth scheme and base URL.\n\nContact Support:\n Name: Opkit",
+      "type": "text/plain"
+    }
+  }
+}

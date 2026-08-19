@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Opkit Benefits Eligibility Inquiries API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Eligibility Inquiries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List eligibility inquiries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/eligibility-inquiries",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per page."
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination; the id of the last object on the previous page."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of eligibility inquiries on the account."
+        },
+        {
+          "info": {
+            "name": "Create an eligibility inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.opkit.co/v1/eligibility-inquiries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a real-time insurance eligibility inquiry for a patient against a payer. Inquiries are resolved asynchronously; poll the inquiry or subscribe to a webhook to receive the completed result and benefits."
+        },
+        {
+          "info": {
+            "name": "Retrieve an eligibility inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.opkit.co/v1/eligibility-inquiries/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the resource."
+              }
+            ]
+          },
+          "docs": "Retrieves a single eligibility inquiry, including its status and benefits when complete."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
