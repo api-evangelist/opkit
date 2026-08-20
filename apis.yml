@@ -89,6 +89,8 @@ apis:
   humanURL: https://docs.opkit.co
   baseURL: https://api.opkit.co/v1
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
