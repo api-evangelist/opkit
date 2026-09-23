@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Opkit Benefits Eligibility Inquiries API
-  description: 'REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices. The API exposes eligibility inquiries, benefits, payers, patients, and webhooks. Requests are authenticated with a Bearer API key and all payloads are JSON over HTTPS.
-
-
-    Provenance note: Opkit''s platform appears to have been decommissioned after the company was acqui-hired by 11x in late 2024, and the live documentation at docs.opkit.co and the API host api.opkit.co are no longer reachable. This specification is reconstructed from Opkit''s publicly described resource model (eligibility inquiries, benefits, payers, patients, webhooks; Bearer-key auth; base URL https://api.opkit.co/v1). Endpoint paths and object fields that could not be verified against live documentation are modeled conservatively along standard RESTful conventions and should be reconciled against authoritative Opkit documentation if it becomes available. No values are presented as guaranteed-accurate beyond the verified auth scheme and base URL.'
+  title: Opkit Eligibility Inquiries API
+  description: REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices.
   contact:
     name: Opkit
     url: https://www.opkit.co
@@ -81,69 +78,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last object on the previous page.
-      schema:
-        type: string
   schemas:
-    EligibilityInquiry:
-      type: object
-      properties:
-        id:
-          type: string
-        object:
-          type: string
-          example: eligibility_inquiry
-        status:
-          type: string
-          description: Lifecycle status of the inquiry.
-          enum:
-          - pending
-          - processing
-          - completed
-          - error
-        patient_id:
-          type: string
-        payer_id:
-          type: string
-        member_id:
-          type: string
-        benefits:
-          type: array
-          description: Structured benefits, populated once the inquiry completes.
-          items:
-            $ref: '#/components/schemas/Benefit'
-        created_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-          nullable: true
-        metadata:
-          type: object
-          additionalProperties: true
     EligibilityInquiryCreateRequest:
       type: object
       required:
@@ -178,6 +113,44 @@ components:
             $ref: '#/components/schemas/EligibilityInquiry'
         has_more:
           type: boolean
+    EligibilityInquiry:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: eligibility_inquiry
+        status:
+          type: string
+          description: Lifecycle status of the inquiry.
+          enum:
+          - pending
+          - processing
+          - completed
+          - error
+        patient_id:
+          type: string
+        payer_id:
+          type: string
+        member_id:
+          type: string
+        benefits:
+          type: array
+          description: Structured benefits, populated once the inquiry completes.
+          items:
+            $ref: '#/components/schemas/Benefit'
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        metadata:
+          type: object
+          additionalProperties: true
     Error:
       type: object
       properties:
@@ -217,29 +190,34 @@ components:
         plan_name:
           type: string
         copay:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         coinsurance:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         deductible:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         deductible_remaining:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         out_of_pocket_max:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
   responses:
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
+    BadRequest:
+      description: The request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or failed validation.
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
       content:
         application/json:
           schema:
@@ -250,6 +228,31 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

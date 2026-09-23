@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Opkit Benefits Patients API
-  description: 'REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices. The API exposes eligibility inquiries, benefits, payers, patients, and webhooks. Requests are authenticated with a Bearer API key and all payloads are JSON over HTTPS.
-
-
-    Provenance note: Opkit''s platform appears to have been decommissioned after the company was acqui-hired by 11x in late 2024, and the live documentation at docs.opkit.co and the API host api.opkit.co are no longer reachable. This specification is reconstructed from Opkit''s publicly described resource model (eligibility inquiries, benefits, payers, patients, webhooks; Bearer-key auth; base URL https://api.opkit.co/v1). Endpoint paths and object fields that could not be verified against live documentation are modeled conservatively along standard RESTful conventions and should be reconciled against authoritative Opkit documentation if it becomes available. No values are presented as guaranteed-accurate beyond the verified auth scheme and base URL.'
+  title: Opkit Patients API
+  description: REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices.
   contact:
     name: Opkit
     url: https://www.opkit.co
@@ -106,50 +103,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last object on the previous page.
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     PatientUpdateRequest:
       type: object
@@ -164,6 +117,35 @@ components:
         metadata:
           type: object
           additionalProperties: true
+    PatientCreateRequest:
+      type: object
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        date_of_birth:
+          type: string
+          format: date
+        metadata:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A machine-readable error type.
+            message:
+              type: string
+              description: A human-readable description of the error.
     Patient:
       type: object
       properties:
@@ -197,35 +179,50 @@ components:
             $ref: '#/components/schemas/Patient'
         has_more:
           type: boolean
-    PatientCreateRequest:
-      type: object
-      required:
-      - first_name
-      - last_name
-      - date_of_birth
-      properties:
-        first_name:
-          type: string
-        last_name:
-          type: string
-        date_of_birth:
-          type: string
-          format: date
-        metadata:
-          type: object
-          additionalProperties: true
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A machine-readable error type.
-            message:
-              type: string
-              description: A human-readable description of the error.
+  responses:
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

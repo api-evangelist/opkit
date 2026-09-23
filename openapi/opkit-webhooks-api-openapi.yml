@@ -1,10 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Opkit Benefits Webhooks API
-  description: 'REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices. The API exposes eligibility inquiries, benefits, payers, patients, and webhooks. Requests are authenticated with a Bearer API key and all payloads are JSON over HTTPS.
-
-
-    Provenance note: Opkit''s platform appears to have been decommissioned after the company was acqui-hired by 11x in late 2024, and the live documentation at docs.opkit.co and the API host api.opkit.co are no longer reachable. This specification is reconstructed from Opkit''s publicly described resource model (eligibility inquiries, benefits, payers, patients, webhooks; Bearer-key auth; base URL https://api.opkit.co/v1). Endpoint paths and object fields that could not be verified against live documentation are modeled conservatively along standard RESTful conventions and should be reconciled against authoritative Opkit documentation if it becomes available. No values are presented as guaranteed-accurate beyond the verified auth scheme and base URL.'
+  title: Opkit Webhooks API
+  description: REST API for Opkit, an automated health insurance verification platform for telehealth companies and virtual medical practices.
   contact:
     name: Opkit
     url: https://www.opkit.co
@@ -92,14 +89,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
+    BadRequest:
+      description: The request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: The request was malformed or failed validation.
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
       content:
         application/json:
           schema:
@@ -111,6 +108,30 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    WebhookList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+        has_more:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A machine-readable error type.
+            message:
+              type: string
+              description: A human-readable description of the error.
     Webhook:
       type: object
       properties:
@@ -143,30 +164,6 @@ components:
           description: Event types to subscribe to (e.g. eligibility inquiry completion).
           items:
             type: string
-    WebhookList:
-      type: object
-      properties:
-        object:
-          type: string
-          example: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Webhook'
-        has_more:
-          type: boolean
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A machine-readable error type.
-            message:
-              type: string
-              description: A human-readable description of the error.
   parameters:
     PathId:
       name: id
