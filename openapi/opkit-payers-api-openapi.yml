@@ -61,14 +61,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last object on the previous page.
-      schema:
-        type: string
     Limit:
       name: limit
       in: query
@@ -86,6 +92,13 @@ components:
       description: The unique identifier of the resource.
       schema:
         type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
   schemas:
     PayerList:
       type: object
@@ -99,6 +112,17 @@ components:
             $ref: '#/components/schemas/Payer'
         has_more:
           type: boolean
+    Payer:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: payer
+        name:
+          type: string
+          description: The display name of the insurance carrier.
     Error:
       type: object
       properties:
@@ -111,30 +135,6 @@ components:
             message:
               type: string
               description: A human-readable description of the error.
-    Payer:
-      type: object
-      properties:
-        id:
-          type: string
-        object:
-          type: string
-          example: payer
-        name:
-          type: string
-          description: The display name of the insurance carrier.
-  responses:
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http

@@ -10,6 +10,7 @@ description: Opkit was a healthcare automation company that built an automated
   generative-AI healthcare call center and was acqui-hired by 11x in late 2024,
   after which the platform was wound down. This catalog documents the API as it
   was publicly described while it was operating.
+x-status: defunct
 deliveryModel:
   model: saas
   open_source: false

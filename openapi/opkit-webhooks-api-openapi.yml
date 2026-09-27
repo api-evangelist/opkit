@@ -89,8 +89,8 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    BadRequest:
-      description: The request was malformed or failed validation.
+    NotFound:
+      description: The requested resource was not found.
       content:
         application/json:
           schema:
@@ -101,25 +101,35 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
+    BadRequest:
+      description: The request was malformed or failed validation.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
   schemas:
-    WebhookList:
+    WebhookCreateRequest:
       type: object
+      required:
+      - url
       properties:
-        object:
+        url:
           type: string
-          example: list
-        data:
+          format: uri
+          description: The HTTPS endpoint that will receive event notifications.
+        events:
           type: array
+          description: Event types to subscribe to (e.g. eligibility inquiry completion).
           items:
-            $ref: '#/components/schemas/Webhook'
-        has_more:
-          type: boolean
+            type: string
     Error:
       type: object
       properties:
@@ -150,28 +160,18 @@ components:
         created_at:
           type: string
           format: date-time
-    WebhookCreateRequest:
+    WebhookList:
       type: object
-      required:
-      - url
       properties:
-        url:
+        object:
           type: string
-          format: uri
-          description: The HTTPS endpoint that will receive event notifications.
-        events:
+          example: list
+        data:
           type: array
-          description: Event types to subscribe to (e.g. eligibility inquiry completion).
           items:
-            type: string
-  parameters:
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
+            $ref: '#/components/schemas/Webhook'
+        has_more:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http

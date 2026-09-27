@@ -78,91 +78,51 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: The request was malformed or failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
   schemas:
-    EligibilityInquiryCreateRequest:
-      type: object
-      required:
-      - patient_id
-      - payer_id
-      properties:
-        patient_id:
-          type: string
-          description: The id of the patient to verify.
-        payer_id:
-          type: string
-          description: The id of the payer to verify coverage against.
-        member_id:
-          type: string
-          description: The patient's member or subscriber identifier on the payer.
-        service_type:
-          type: string
-          description: The benefit/service type to check (e.g. health benefit plan coverage).
-        metadata:
-          type: object
-          additionalProperties: true
-          description: Arbitrary key/value metadata to associate with the inquiry.
-    EligibilityInquiryList:
-      type: object
-      properties:
-        object:
-          type: string
-          example: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/EligibilityInquiry'
-        has_more:
-          type: boolean
-    EligibilityInquiry:
-      type: object
-      properties:
-        id:
-          type: string
-        object:
-          type: string
-          example: eligibility_inquiry
-        status:
-          type: string
-          description: Lifecycle status of the inquiry.
-          enum:
-          - pending
-          - processing
-          - completed
-          - error
-        patient_id:
-          type: string
-        payer_id:
-          type: string
-        member_id:
-          type: string
-        benefits:
-          type: array
-          description: Structured benefits, populated once the inquiry completes.
-          items:
-            $ref: '#/components/schemas/Benefit'
-        created_at:
-          type: string
-          format: date-time
-        completed_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        metadata:
-          type: object
-          additionalProperties: true
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A machine-readable error type.
-            message:
-              type: string
-              description: A human-readable description of the error.
     Benefit:
       type: object
       properties:
@@ -209,50 +169,90 @@ components:
           type:
           - number
           - 'null'
-  responses:
-    BadRequest:
-      description: The request was malformed or failed validation.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last object on the previous page.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A machine-readable error type.
+            message:
+              type: string
+              description: A human-readable description of the error.
+    EligibilityInquiryCreateRequest:
+      type: object
+      required:
+      - patient_id
+      - payer_id
+      properties:
+        patient_id:
+          type: string
+          description: The id of the patient to verify.
+        payer_id:
+          type: string
+          description: The id of the payer to verify coverage against.
+        member_id:
+          type: string
+          description: The patient's member or subscriber identifier on the payer.
+        service_type:
+          type: string
+          description: The benefit/service type to check (e.g. health benefit plan coverage).
+        metadata:
+          type: object
+          additionalProperties: true
+          description: Arbitrary key/value metadata to associate with the inquiry.
+    EligibilityInquiry:
+      type: object
+      properties:
+        id:
+          type: string
+        object:
+          type: string
+          example: eligibility_inquiry
+        status:
+          type: string
+          description: Lifecycle status of the inquiry.
+          enum:
+          - pending
+          - processing
+          - completed
+          - error
+        patient_id:
+          type: string
+        payer_id:
+          type: string
+        member_id:
+          type: string
+        benefits:
+          type: array
+          description: Structured benefits, populated once the inquiry completes.
+          items:
+            $ref: '#/components/schemas/Benefit'
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        metadata:
+          type: object
+          additionalProperties: true
+    EligibilityInquiryList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EligibilityInquiry'
+        has_more:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http
