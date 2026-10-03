@@ -61,20 +61,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
     Limit:
       name: limit
       in: query
@@ -92,14 +86,32 @@ components:
       description: The unique identifier of the resource.
       schema:
         type: string
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last object on the previous page.
-      schema:
-        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    BenefitList:
+      type: object
+      properties:
+        object:
+          type: string
+          example: list
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Benefit'
+        has_more:
+          type: boolean
     Benefit:
       type: object
       properties:
@@ -146,18 +158,6 @@ components:
           type:
           - number
           - 'null'
-    BenefitList:
-      type: object
-      properties:
-        object:
-          type: string
-          example: list
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Benefit'
-        has_more:
-          type: boolean
     Error:
       type: object
       properties:
