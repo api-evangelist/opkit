@@ -61,45 +61,19 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    StartingAfter:
-      name: starting_after
-      in: query
-      required: false
-      description: Cursor for pagination; the id of the last object on the previous page.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Maximum number of records to return per page.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100
-        default: 20
-    PathId:
-      name: id
-      in: path
-      required: true
-      description: The unique identifier of the resource.
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed or the API key is missing or invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            type:
+              type: string
+              description: A machine-readable error type.
+            message:
+              type: string
+              description: A human-readable description of the error.
     BenefitList:
       type: object
       properties:
@@ -158,18 +132,44 @@ components:
           type:
           - number
           - 'null'
-    Error:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            type:
-              type: string
-              description: A machine-readable error type.
-            message:
-              type: string
-              description: A human-readable description of the error.
+  parameters:
+    StartingAfter:
+      name: starting_after
+      in: query
+      required: false
+      description: Cursor for pagination; the id of the last object on the previous page.
+      schema:
+        type: string
+    PathId:
+      name: id
+      in: path
+      required: true
+      description: The unique identifier of the resource.
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of records to return per page.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  responses:
+    Unauthorized:
+      description: Authentication failed or the API key is missing or invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     bearerAuth:
       type: http
