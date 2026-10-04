@@ -45,6 +45,7 @@ tags:
 - Benefits
 - Verification
 - Telehealth
+- Defunct
 created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'
@@ -112,6 +113,9 @@ apis:
   - type: Documentation
     url: https://docs.opkit.co
 common:
+- type: CapabilityMap
+  url: capabilities/opkit-capability-edges.yml
+  name: Opkit Business Capability Map
 - type: AgenticAccess
   url: agentic-access/opkit-agentic-access.yml
 - type: DomainSecurity
