@@ -1,4 +1,4 @@
-# Opkit (opkit)
+# Opkit
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,138 +64,89 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
+> **No longer operating.** This company or product has shut down, been discontinued, or been deprecated. This profile is kept as a historical record and is not maintained or rated.
+
 Opkit was a healthcare automation company that built an automated health insurance verification platform purpose-built for telehealth companies and virtual medical practices. The Opkit REST API let engineering teams run insurance eligibility checks, read benefits, look up payers, manage patients, and receive webhook events programmatically. Opkit (YC S21) later pivoted to a generative-AI healthcare call center and was acqui-hired by 11x in late 2024, after which the platform was wound down. This catalog documents the API as it was publicly described while it was operating.
 
-> Status note: As of this catalog's date the Opkit platform appears decommissioned — `www.opkit.co` and `docs.opkit.co` no longer respond and `api.opkit.co` no longer resolves. See [review.yml](review.yml) for details.
+**Areas:** Healthcare · Insurance · Eligibility · Benefits · Verification · Telehealth · Defunct
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/opkit/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/opkit/refs/heads/main/apis.yml)
+## Opkit on APIs.io (historical record)
 
-## Tags
+Everything profiled for Opkit is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/opkit/](https://apis.io/providers/opkit/)** — or go straight to one of the APIs or properties below.
 
-- Healthcare
-- Insurance
-- Eligibility
-- Benefits
-- Verification
-- Telehealth
+### APIs (5)
 
-## Timestamps
+- [Opkit Benefits API](https://apis.io/apis/opkit/opkit-benefits-api/) — Read structured benefit details from completed eligibility inquiries.
+- [Opkit Eligibility Inquiries API](https://apis.io/apis/opkit/opkit-eligibility-inquiries-api/) — Create and retrieve real-time insurance eligibility inquiries.
+- [Opkit Patients API](https://apis.io/apis/opkit/opkit-patients-api/) — Manage patient records that are the subject of eligibility inquiries.
+- [Opkit Payers API](https://apis.io/apis/opkit/opkit-payers-api/) — Look up insurance carriers (payers) Opkit connects to.
+- [Opkit Webhooks API](https://apis.io/apis/opkit/opkit-webhooks-api/) — Register and manage webhook endpoints for event notifications.
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Opkit Eligibility Inquiries API
+#### Agentic access (1)
 
-Create and retrieve real-time insurance eligibility inquiries to determine whether a patient's coverage is active, in- or out-of-network, and what cost-sharing applies. Submitted against a payer for a patient and resolved asynchronously, with results delivered on the inquiry object and via webhooks.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://docs.opkit.co](https://docs.opkit.co)
-- **Base URL:** `https://api.opkit.co/v1`
+- [Opkit Agentic Access](https://apis.io/agentic-access/opkit/opkit-agentic-access/)
 
-#### Tags
+#### Collections (6)
 
-- Eligibility
-- Insurance
-- Verification
+Postman and Open Collection request collections.
 
-#### Properties
+- [Opkit API](https://apis.io/collections/opkit/open-opkit/)
+- [Opkit Benefits API](https://apis.io/collections/opkit/open-opkit-benefits-api/)
+- [Opkit Benefits Eligibility Inquiries API](https://apis.io/collections/opkit/open-opkit-eligibility-inquiries-api/)
+- [Opkit Benefits Patients API](https://apis.io/collections/opkit/open-opkit-patients-api/)
+- [Opkit Benefits Payers API](https://apis.io/collections/opkit/open-opkit-payers-api/)
+- [Opkit Benefits Webhooks API](https://apis.io/collections/opkit/open-opkit-webhooks-api/)
 
-- [Documentation](https://docs.opkit.co)
-- [OpenAPI](openapi/opkit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opkit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opkit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (2)
 
-### Opkit Benefits API
+Authentication, trust centre, and vulnerability disclosure.
 
-Read structured benefit details returned by a completed eligibility inquiry - plan status, network status, copays, coinsurance, deductibles, and out-of-pocket maximums.
+- [Opkit Authentication](https://apis.io/security/opkit/opkit-authentication/)
+- [Opkit Domain Security](https://apis.io/security/opkit/opkit-domain-security/)
 
-- **Human URL:** [https://docs.opkit.co](https://docs.opkit.co)
-- **Base URL:** `https://api.opkit.co/v1`
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Benefits
-- Coverage
-- Insurance
+- [Opkit Plans Pricing](https://apis.io/plans/opkit/opkit-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://docs.opkit.co)
-- [OpenAPI](openapi/opkit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opkit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opkit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-### Opkit Payers API
+- [Opkit Rate Limits](https://apis.io/rate-limits/opkit/opkit-rate-limits/)
 
-List and retrieve the insurance carriers (payers) Opkit connects to across the United States, used to identify the correct payer when creating an eligibility inquiry.
+#### FinOps (1)
 
-- **Human URL:** [https://docs.opkit.co](https://docs.opkit.co)
-- **Base URL:** `https://api.opkit.co/v1`
+What the API costs to run, by operation.
 
-#### Tags
+- [Opkit Finops](https://apis.io/finops/opkit/opkit-finops/)
 
-- Payers
-- Insurance
-- Directory
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://docs.opkit.co)
-- [OpenAPI](openapi/opkit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opkit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opkit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Opkit Patients API
-
-Create, retrieve, update, and list patient records used as the subject of eligibility inquiries, including demographics and member identifiers needed for verification.
-
-- **Human URL:** [https://docs.opkit.co](https://docs.opkit.co)
-- **Base URL:** `https://api.opkit.co/v1`
-
-#### Tags
-
-- Patients
-- Records
-- Healthcare
-
-#### Properties
-
-- [Documentation](https://docs.opkit.co)
-- [OpenAPI](openapi/opkit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opkit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opkit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Opkit Webhooks API
-
-Register and manage webhook endpoints to receive event notifications - such as an eligibility inquiry completing - so applications can react to asynchronous results without polling.
-
-- **Human URL:** [https://docs.opkit.co](https://docs.opkit.co)
-- **Base URL:** `https://api.opkit.co/v1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.opkit.co)
-- [OpenAPI](openapi/opkit-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/opkit.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/opkit.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/company/opkit)
 - [Website](https://www.opkit.co)
 - [Documentation](https://docs.opkit.co)
-- [Plans](plans/opkit-plans-pricing.yml)
-- [Rate Limits](rate-limits/opkit-rate-limits.yml)
-- [Fin Ops](finops/opkit-finops.yml)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Not rated** — this company is recorded as no longer operating, so no score is published. If it is in fact operating, say so on this repository and it will be re-profiled.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Opkit: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/opkit/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
